@@ -1,48 +1,51 @@
 import React from 'react';
 
-class CovidMap extends React.Component {
+class CovidWorldPanel extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isIndividualCountriesDataLoaded: false,
-      individualCountriesData: []
+      isWorldDataLoaded: false,
+      worldData: []
     }
   }
 
-  componentDidMount () {
-    //fetch last data for all countries
-    const urlAllCountriesCovidData = 'https://covid-api.com/api/reports';
-    fetch(urlAllCountriesCovidData).then((response) => response.json()).then((data) => {
+  componentDidMount() {
+    //take yesterday's date
+    let now = new Date();
+    let yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate()-1);
+    this.date = yesterday.toISOString().slice(0,10);
+    // fetch data for the world
+    const urlWorldCovidData = 'https://covid-api.com/api/reports/total?date=' + this.date;
+    fetch(urlWorldCovidData).then((response) => response.json()).then((data) => {
       this.setState({
-        isIndividualCountriesDataLoaded: true,
-        individualCountriesData: data.data
+        isWorldDataLoaded: true,
+        worldData: data.data
       });
     },(error) => {
       this.setState({
-          isIndividualCountriesDataLoaded: true,
+          isWorldDataLoaded: true,
           error
       });
     });
 
   }
-
-  render() {console.log('gg');
-  const {
-    error,
-    isIndividualCountriesDataLoaded,
-    individualCountriesData
-  } = this.state;
-
-  //display countries data
-  if (error) {return <div>Error: {error.message}</div>;}
-  else if (!isIndividualCountriesDataLoaded) {return <div>Loading...</div>;} else
-  {return (<p>here is the map hehe</p>);}
+  render() {
+    const {
+      error,
+      isWorldDataLoaded,
+      worldData
+    } = this.state;
+    //display world data
+    if (error) {return <div>Error: {error.message}</div>;}
+    else if (!isWorldDataLoaded) {return <div>Loading...</div>;} else
+    {return (<p>hahahah {this.state.worldData.date}</p>);}
   }
 
 }
 
-export default CovidMap;
+export default CovidWorldPanel;
 
 /*
 jakiś ładny obrazek ze statystykami dla świata z ikonkami

@@ -1,37 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import CovidStatsPanel from './CovidStatsPanel';
-import TickerTape from './TickerTape';
+import CovidMap from './CovidMap';
+import CovidWorldPanel from './CovidWorldPanel'
 
-function App() {
+class CovidStatsPanel extends React.Component {
 
-  return (
-    <div className="App">
-      <Grid container spacing={2}>
-        <Grid item xs>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={12} sm={3}>
-            <Paper>
-              <p>COVID19 daily dispatch</p>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={8}>
-            <Paper>
-              <p>Current data panel</p>
-              <CovidStatsPanel/>
-            </Paper>
-          </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
-  );
+  render() {
+    const element = <div><CovidWorldPanel/><CovidMap/></div>;
+    return element;
+  }
+
 }
 
-export default App;
+export default CovidStatsPanel;
+
+/*
+jakiś ładny obrazek ze statystykami dla świata z ikonkami
+*/
+
 
 /*
             <header className="App-header">
