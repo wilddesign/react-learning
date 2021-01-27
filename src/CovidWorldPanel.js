@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class CovidWorldPanel extends React.Component {
 
   constructor(props) {

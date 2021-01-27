@@ -1,4 +1,5 @@
 import React from 'react';
+import {WorldMap} from 'react-svg-worldmap';
 
 class CovidMap extends React.Component {
 
@@ -12,11 +13,19 @@ class CovidMap extends React.Component {
 
   componentDidMount () {
     //fetch last data for all countries
-    const urlAllCountriesCovidData = 'https://covid-api.com/api/reports';
+    const urlAllCountriesCovidData = 'https://api.covid19api.com/summary';
     fetch(urlAllCountriesCovidData).then((response) => response.json()).then((data) => {
+
+      let rawData = data.Countries;
+      console.log(rawData);
+      let fittedData = rawData.map(country => ({
+        country: country.CountryCode.toLowerCase(),
+        value: country.TotalConfirmed
+      }));
+      console.log(fittedData[20]);
       this.setState({
         isIndividualCountriesDataLoaded: true,
-        individualCountriesData: data.data
+        individualCountriesData: fittedData
       });
     },(error) => {
       this.setState({
@@ -27,17 +36,24 @@ class CovidMap extends React.Component {
 
   }
 
-  render() {console.log('gg');
+  render() {
   const {
     error,
     isIndividualCountriesDataLoaded,
     individualCountriesData
   } = this.state;
 
+  let element = (
+    <div>
+      <p>here is the map hehe</p>
+      <WorldMap color="blue" title="World COVID19 Map" size="lg" data={this.state.individualCountriesData}/>
+    </div>
+  )
+
   //display countries data
   if (error) {return <div>Error: {error.message}</div>;}
   else if (!isIndividualCountriesDataLoaded) {return <div>Loading...</div>;} else
-  {return (<p>here is the map hehe</p>);}
+  {return element;}
   }
 
 }

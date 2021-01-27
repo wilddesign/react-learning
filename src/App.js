@@ -13,7 +13,7 @@ function App() {
       <Grid container spacing={2}>
         <Grid item xs>
         <Grid container justify="center" spacing={2}>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={2}>
             <Paper>
               <p>COVID19 daily dispatch</p>
             </Paper>
