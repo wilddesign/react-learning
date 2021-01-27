@@ -17,12 +17,10 @@ class CovidMap extends React.Component {
     fetch(urlAllCountriesCovidData).then((response) => response.json()).then((data) => {
 
       let rawData = data.Countries;
-      console.log(rawData);
       let fittedData = rawData.map(country => ({
         country: country.CountryCode.toLowerCase(),
         value: country.TotalConfirmed
       }));
-      console.log(fittedData[20]);
       this.setState({
         isIndividualCountriesDataLoaded: true,
         individualCountriesData: fittedData
@@ -45,8 +43,7 @@ class CovidMap extends React.Component {
 
   let element = (
     <div>
-      <p>here is the map hehe</p>
-      <WorldMap color="blue" title="World COVID19 Map" size="lg" data={this.state.individualCountriesData}/>
+      <WorldMap color="blue" size="lg" data={this.state.individualCountriesData}/>
     </div>
   )
 

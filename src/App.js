@@ -2,28 +2,53 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import CovidStatsPanel from './CovidStatsPanel';
-import TickerTape from './TickerTape';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CovidMap from './CovidMap';
+import CovidWorldPanel from './CovidWorldPanel';
+import Typography from '@material-ui/core/Typography';
 
 function App() {
 
   return (
     <div className="App">
-      <Grid container spacing={2}>
-        <Grid item xs>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={12} sm={2}>
-            <Paper>
-              <p>COVID19 daily dispatch</p>
-            </Paper>
+      <Grid container spacing={2} justify="center">
+        <Grid item xs={11}>
+        <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={2}>
+          <Grid item xs sm md>
+            <Card>
+              <CardHeader title="COVID19 daily dispatch" subheader="Online fleeing attendant"/>
+              <CardContent>
+                <Typography component="p" variant="b2">
+                Too busy for a pneumonia, huh?
+                </Typography>
+                <Typography component="p" variant="b2">
+                Diabetic and paranoid?
+                </Typography>
+                <Typography component="p" variant="caption">
+                That's a place just for you! Find out the current whereabouts of Covid19 & stay safe!
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item xs={12} sm={8}>
-            <Paper>
-              <p>Current data panel</p>
-              <CovidStatsPanel/>
-            </Paper>
+          <Grid item xs sm md>
+            <Card>
+              <CardHeader title="Pandemic today"/>
+              <CardContent>
+                <CovidWorldPanel/>
+              </CardContent>
+            </Card>
           </Grid>
+            <Grid item xs sm md>
+              <Card>
+                <CardHeader title="Total cases by country"/>
+                <CardContent>
+                  <CovidMap/>
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

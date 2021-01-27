@@ -1,5 +1,13 @@
 import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Avatar from '@material-ui/core/Avatar';
 
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 class CovidWorldPanel extends React.Component {
 
@@ -19,7 +27,7 @@ class CovidWorldPanel extends React.Component {
     this.date = yesterday.toISOString().slice(0,10);
     // fetch data for the world
     const urlWorldCovidData = 'https://covid-api.com/api/reports/total?date=' + this.date;
-    fetch(urlWorldCovidData).then((response) => response.json()).then((data) => {
+    fetch(urlWorldCovidData).then((response) => response.json()).then((data) => {console.log(data.data);
       this.setState({
         isWorldDataLoaded: true,
         worldData: data.data
@@ -37,11 +45,38 @@ class CovidWorldPanel extends React.Component {
       error,
       isWorldDataLoaded,
       worldData
-    } = this.state;
+    } = this.state;console.log(this.state.worldData.date);
     //display world data
+
     if (error) {return <div>Error: {error.message}</div>;}
     else if (!isWorldDataLoaded) {return <div>Loading...</div>;} else
-    {return (<p>hahahah {this.state.worldData.date}</p>);}
+    {
+      const elem = (
+        <div>
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                  <AddLocationIcon color="primary"/>
+              </ListItemIcon>
+              <ListItemText primary={(this.state.worldData.confirmed_diff/1000).toFixed(1)+'k'} secondary="New cases today"/>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                  <CloudUploadIcon color="error"/>
+              </ListItemIcon>
+              <ListItemText primary={(this.state.worldData.deaths_diff/1000).toFixed(1)+'k'} secondary="Dead today"/>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                  <AccessibilityNewIcon color="action"/>
+              </ListItemIcon>
+              <ListItemText primary={(this.state.worldData.recovered_diff/1000).toFixed(1)+'k'} secondary="Recovered today"/>
+            </ListItem>
+          </List>
+        </div>
+      );
+      return (elem);
+    }
   }
 
 }
