@@ -7,8 +7,14 @@ class CovidMap extends React.Component {
     super(props);
     this.state = {
       isIndividualCountriesDataLoaded: false,
-      individualCountriesData: []
+      //individualCountriesData: [],
+      chosenCountry: null
     }
+    this.chooseCountry = this.chooseCountry.bind(this);
+  }
+
+  chooseCountry() {
+    this.props.chooseCountry(arguments[2]);
   }
 
   componentDidMount () {
@@ -43,7 +49,7 @@ class CovidMap extends React.Component {
 
   let element = (
     <div>
-      <WorldMap color="blue" size="lg" data={this.state.individualCountriesData}/>
+      <WorldMap color="blue" size="lg" data={individualCountriesData} onClickFunction={this.chooseCountry}/>
     </div>
   )
 

@@ -1,31 +1,32 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardActions from '@material-ui/core/CardActions';
+//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CovidMap from './CovidMap';
 import CovidWorldPanel from './CovidWorldPanel';
 import Typography from '@material-ui/core/Typography';
+import CountryDetails from './CountryDetails'
+import CovidPlot from './CovidPlot'
 
 function App() {
+// use hook to store a state in this function component
+const [chosenCountry, chooseCountry] = useState(null);
 
   return (
     <div className="App">
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} justify="space-around">
         <Grid item xs={11}>
-        <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={2}>
+        <Grid container direction="row" spacing={2} itemalign="stretch" justify="space-around">
           <Grid item xs sm md>
             <Card>
               <CardHeader title="COVID19 daily dispatch" subheader="Online fleeing attendant"/>
               <CardContent>
-                <Typography component="p" variant="b2">
+                <Typography component="p" variant="body2">
                 Too busy for a pneumonia, huh?
-                </Typography>
-                <Typography component="p" variant="b2">
-                Diabetic and paranoid?
                 </Typography>
                 <Typography component="p" variant="caption">
                 That's a place just for you! Find out the current whereabouts of Covid19 & stay safe!
@@ -45,7 +46,30 @@ function App() {
               <Card>
                 <CardHeader title="Total cases by country"/>
                 <CardContent>
-                  <CovidMap/>
+                  <CovidMap chooseCountry={chooseCountry}/>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={11}>
+        <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+            <Grid item xs sm md>
+              <Card>
+                  <CountryDetails country={chosenCountry}/>
+              </Card>
+            </Grid>
+            <Grid item xs sm md>
+              <Card>
+                  <CovidPlot country={chosenCountry}/>
+              </Card>
+            </Grid>
+            <Grid item xs sm md>
+              <Card>
+                <CardHeader title="Plots"/>
+                <CardContent>
+                  <p>plots here</p>
+                  <CovidPlot country={chosenCountry}/>
                 </CardContent>
               </Card>
             </Grid>

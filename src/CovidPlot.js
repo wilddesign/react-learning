@@ -1,17 +1,24 @@
 import React from 'react';
-import CovidMap from './CovidMap';
-import CovidWorldPanel from './CovidWorldPanel'
 
-class CovidStatsPanel extends React.Component {
+class CovidPlot extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    }
+  }
+
+  componentDidMount() {
+    //fetch country data
+  }
 
   render() {
-    const element = <div><CovidWorldPanel/><CovidMap/></div>;
+    const element = <div>plots here<p>{this.props.country}</p></div>;
     return element;
   }
 
 }
 
-export default CovidStatsPanel;
+export default CovidPlot;
 
 /*
 jakiś ładny obrazek ze statystykami dla świata z ikonkami
