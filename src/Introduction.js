@@ -1,42 +1,31 @@
 import React from 'react';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
-class CovidPlot extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
+class Introduction extends React.Component {
+
+  render() {
+
+      const elem = (
+        <div>
+        <CardHeader title="COVID19 daily dispatch" subheader="Online fleeing attendant"/>
+        <CardContent>
+          <Typography component="p" variant="body2">
+          Too busy for a pneumonia, huh?
+          </Typography>
+          <Typography component="p" variant="caption">
+          That's a place just for you! Find out the current whereabouts of Covid19 & stay safe!
+          </Typography>
+        </CardContent>
+        </div>
+      );
+      return elem;
     }
   }
 
-  componentDidMount() {
-    //fetch country data
-    const urlCountryData = 'https://api.covid19api.com/country/'+this.props+'/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z'+this.props.country;
-    fetch(urlCountryData).then((response) => response.json()).then((data) => {
-      this.setState({
-        isCountryChosen: true,
-        isCountryLoaded: true,
-        countryCode: data.alpha2Code,
-        countryName: data.name,
-        countryCapital: data.capital,
-        countryNativeName: data.nativeName
-      });
-    },(error) => {
-      this.setState({
-          isCountryChosen: true,
-          error
-      });
-    });
-  }
 
-  render() {
-    const element = (
-      <div>plots here<p>{this.props.country}</p></div>
-    );
-    return element;
-  }
-
-}
-
-export default CovidPlot;
+export default Introduction;
 
 /*
 jakiś ładny obrazek ze statystykami dla świata z ikonkami

@@ -1,5 +1,7 @@
 import React from 'react';
 import {WorldMap} from 'react-svg-worldmap';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 
 class CovidMap extends React.Component {
 
@@ -7,7 +9,6 @@ class CovidMap extends React.Component {
     super(props);
     this.state = {
       isIndividualCountriesDataLoaded: false,
-      //individualCountriesData: [],
       chosenCountry: null
     }
     this.chooseCountry = this.chooseCountry.bind(this);
@@ -49,7 +50,10 @@ class CovidMap extends React.Component {
 
   let element = (
     <div>
+    <CardHeader title="Total cases by country" subheader="Worldwide"/>
+    <CardContent>
       <WorldMap color="blue" size="lg" data={individualCountriesData} onClickFunction={this.chooseCountry}/>
+    </CardContent>
     </div>
   )
 

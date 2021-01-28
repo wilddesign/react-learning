@@ -3,11 +3,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-//import Avatar from '@material-ui/core/Avatar';
-
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 
 class CovidWorldPanel extends React.Component {
 
@@ -53,26 +53,29 @@ class CovidWorldPanel extends React.Component {
     {
       const elem = (
         <div>
-          <List>
-            <ListItem>
-              <ListItemIcon>
-                  <AddLocationIcon color="primary"/>
-              </ListItemIcon>
-              <ListItemText primary={(worldData.confirmed_diff/1000).toFixed(1)+'k'} secondary="New cases today"/>
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                  <CloudUploadIcon color="error"/>
-              </ListItemIcon>
-              <ListItemText primary={(worldData.deaths_diff/1000).toFixed(1)+'k'} secondary="Dead today"/>
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                  <AccessibilityNewIcon color="action"/>
-              </ListItemIcon>
-              <ListItemText primary={(worldData.recovered_diff/1000).toFixed(1)+'k'} secondary="Recovered today"/>
-            </ListItem>
-          </List>
+        <CardHeader title="Pandemic today" subheader="Daily update"/>
+        <CardContent>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+                <AddLocationIcon color="primary"/>
+            </ListItemIcon>
+            <ListItemText primary={(worldData.confirmed_diff/1000).toFixed(1)+'k'} secondary="New cases today"/>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+                <CloudUploadIcon color="error"/>
+            </ListItemIcon>
+            <ListItemText primary={(worldData.deaths_diff/1000).toFixed(1)+'k'} secondary="Dead today"/>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+                <AccessibilityNewIcon color="action"/>
+            </ListItemIcon>
+            <ListItemText primary={(worldData.recovered_diff/1000).toFixed(1)+'k'} secondary="Recovered today"/>
+          </ListItem>
+        </List>
+        </CardContent>
         </div>
       );
       return (elem);
