@@ -19,7 +19,7 @@ const [chosenCountry, chooseCountry] = useState(null);
     <div className="App">
       <Grid container spacing={2} justify="space-around">
         <Grid item xs={11}>
-        <Grid container direction="row" spacing={2} itemalign="stretch" justify="space-around">
+        <Grid container direction="row" spacing={2} alignItems="stretch" justify="space-around">
           <Grid item xs sm md>
             <Card>
               <Introduction/>
@@ -38,7 +38,7 @@ const [chosenCountry, chooseCountry] = useState(null);
           </Grid>
         </Grid>
         <Grid item xs={11}>
-        <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+        <Grid container direction="row" justify="space-around" alignItems="stretch" spacing={2}>
             <Grid item xs sm md>
               <Card>
                   <CountryDetails country={chosenCountry}/>
