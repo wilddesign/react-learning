@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 # Getting Started with Create React App
 
@@ -73,8 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # wilddesign.github.io
 Learning React
->>>>>>> 1de23c0187c8bada9631c3a8ecdfc383ba96a666
-=======
-# wilddesign.github.io
-Learning React
->>>>>>> 3876acf5c4490a2e4e08fd3ec2be00984a2982da
+
