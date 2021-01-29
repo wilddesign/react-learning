@@ -1,5 +1,5 @@
 import React from 'react';
-import {ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area} from 'recharts';
+import {AreaChart, XAxis, YAxis, Tooltip, Area} from 'recharts';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 
@@ -14,7 +14,7 @@ class CountryPlot extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-        if ((prevProps.country == null) || (prevProps.country !== this.props.country)) {
+        if ( (prevProps.country !== this.props.country)) {
           //fetch country data for the previous month
           let now = new Date();
           let yesterday = new Date(now);
