@@ -27,9 +27,7 @@ class CountryPlot extends React.Component {
 
           const urlCountryData = 'https://api.covid19api.com/country/'+this.props.country+'/status/confirmed?from='+weekAgo+'T00:00:00Z&to='+latest+'T00:00:00Z';
           fetch(urlCountryData).then((response) => response.json()).then((data) => {
-            console.log(data);
-            let extractedData = data.map((elem, index, array) => ({nr: elem.Date.slice(0,10), total: elem.Cases, diff: array[index-1] ? elem.Cases-array[index-1].Cases : 0}))
-            console.log(extractedData);
+            let extractedData = data.map((elem, index, array) => ({nr: elem.Date.slice(0,10), total: elem.Cases, change: array[index-1] ? elem.Cases-array[index-1].Cases : null}))
             this.setState({
               isCountryChosen: true,
               isCountryLoaded: true,
@@ -59,7 +57,7 @@ class CountryPlot extends React.Component {
         <div>
             <CardHeader title="New Covid19 cases" subheader="In previous 2 weeks"/>
             <CardContent>
-              <AreaChart width={730} height={250} data={this.state.data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+              <AreaChart width={293} height={100} data={this.state.data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
@@ -67,13 +65,13 @@ class CountryPlot extends React.Component {
                 </linearGradient>
                 <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="blue" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                  <stop offset="95%" stopColor="blue" stopOpacity={0.5}/>
                 </linearGradient>
               </defs>
               <XAxis dataKey="nr" />
               <YAxis />
               <Tooltip />
-              <Area type="monotone" dataKey="diff" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+              <Area type="monotone" dataKey="change" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
               </AreaChart>
             </CardContent>
         </div>);
