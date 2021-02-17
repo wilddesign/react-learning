@@ -83,7 +83,3 @@ class CountryPlot extends React.Component {
 };
 
 export default CountryPlot;
-
-/*
-
-*/
